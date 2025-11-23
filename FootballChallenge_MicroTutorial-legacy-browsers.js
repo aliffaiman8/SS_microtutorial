@@ -347,7 +347,7 @@ function SS_trials_loopLoopBegin(SS_trials_loopLoopScheduler, snapshot) {
     // set up handler to look after randomisation of conditions etc
     SS_trials_loop = new TrialHandler({
       psychoJS: psychoJS,
-      nReps: 4, method: TrialHandler.Method.RANDOM,
+      nReps: 1, method: TrialHandler.Method.RANDOM,
       extraInfo: expInfo, originPath: undefined,
       trialList: 'SS_Signal_Asset/SS_trials.xlsx',
       seed: undefined, name: 'SS_trials_loop'
@@ -864,7 +864,7 @@ function SS_trialsRoutineEnd(snapshot) {
         }
     }
     SSTrialsCount += 1;
-    if ((SSTrialsCount >= 36)) {
+    if ((SSTrialsCount >= 8)) {
         SSTrialsCount = 0;
         SS_trials_loop.finished = true;
     }
