@@ -56,10 +56,10 @@ flowScheduler.add(SS_main_loopLoopEnd);
 flowScheduler.add(datapipeRoutineBegin());
 flowScheduler.add(datapipeRoutineEachFrame());
 flowScheduler.add(datapipeRoutineEnd());
-flowScheduler.add(quitPsychoJS, 'Thank you for your patience.', true);
+flowScheduler.add(quitPsychoJS, 'Terima kasih kerana sabar menunggu. Anda boleh tutup paparan ini.', true);
 
 // quit if user presses Cancel in dialog box:
-dialogCancelScheduler.add(quitPsychoJS, 'Thank you for your patience.', false);
+dialogCancelScheduler.add(quitPsychoJS, 'Terima kasih kerana sabar menunggu. Anda boleh tutup paparan ini.', false);
 
 psychoJS.start({
   expName: expName,
@@ -864,7 +864,7 @@ function SS_trialsRoutineEnd(snapshot) {
         }
     }
     SSTrialsCount += 1;
-    if ((SSTrialsCount >= 8)) {
+    if ((SSTrialsCount >= 6)) {
         SSTrialsCount = 0;
         SS_trials_loop.finished = true;
     }
