@@ -150,6 +150,7 @@ var SS_break_or_endClock;
 var SS_break_image;
 var SS_break_key_resp;
 var datapipeClock;
+var text;
 var globalClock;
 var routineTimer;
 async function experimentInit() {
@@ -239,6 +240,18 @@ async function experimentInit() {
   
   // Initialize components for Routine "datapipe"
   datapipeClock = new util.Clock();
+  text = new visual.TextStim({
+    win: psychoJS.window,
+    name: 'text',
+    text: 'Sila tunggu sementara data disimpan...',
+    font: 'Arial',
+    units: undefined, 
+    pos: [0, 0], draggable: false, height: 0.05,  wrapWidth: undefined, ori: 0.0,
+    languageStyle: 'LTR',
+    color: new util.Color([(- 1.0), (- 1.0), (- 1.0)]),  opacity: undefined,
+    depth: 0.0 
+  });
+  
   // Create some handy timers
   globalClock = new util.Clock();  // to track the time since experiment started
   routineTimer = new util.CountdownTimer();  // to track time remaining of each (non-slip) routine
@@ -1098,6 +1111,7 @@ function datapipeRoutineBegin(snapshot) {
     datapipeMaxDuration = null
     // keep track of which components have finished
     datapipeComponents = [];
+    datapipeComponents.push(text);
     
     for (const thisComponent of datapipeComponents)
       if ('status' in thisComponent)
@@ -1114,6 +1128,16 @@ function datapipeRoutineEachFrame() {
     t = datapipeClock.getTime();
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
+    
+    // *text* updates
+    if (t >= 0.0 && text.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      text.tStart = t;  // (not accounting for frame time here)
+      text.frameNStart = frameN;  // exact frame index
+      
+      text.setAutoDraw(true);
+    }
+    
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
